@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "105727134184",
+    "firebase_url": "https://taginwall.firebaseio.com",
+    "project_id": "taginwall",
+    "storage_bucket": "taginwall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105727134184:android:0ab99ab6b6290bf9",
+        "android_client_info": {
+          "package_name": "com.pratice.kotlin.taginwall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105727134184-6gskn01ro0tl3e12kfgcusg484mrv4md.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pratice.kotlin.taginwall",
+            "certificate_hash": "72013704e5583464aa1656b85baa04cc1131e817"
+          }
+        },
+        {
+          "client_id": "105727134184-q4b29ipgb8dljfv8m09umbtsk77oc3ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYR8yLhy-uX6nbeePKndmjfamNCkfqjBc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105727134184-q4b29ipgb8dljfv8m09umbtsk77oc3ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

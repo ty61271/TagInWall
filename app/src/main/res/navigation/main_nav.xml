@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_myrooms"
+            app:startDestination="@+id/navigation_home">
+    <fragment android:id="@+id/navigation_home" android:name="com.pratice.kotlin.taginwall.HomeFragment"
+              android:label="HomeFragment"
+              tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_homeFragment_to_roomFragment" app:destination="@id/roomFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popUpTo="@id/navigation_home"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/roomFragment" android:name="com.pratice.kotlin.taginwall.RoomFragment"
+              android:label="RoomFragment"
+              tools:layout="@layout/fragment_room"/>
+    <fragment android:id="@+id/navigation_my_rooms" android:name="com.pratice.kotlin.taginwall.MyRoomsFragment"
+              android:label="MyRoomsFragment"
+              tools:layout="@layout/fragment_myrooms"/>
+    <fragment android:id="@+id/navigation_Friend" android:name="com.pratice.kotlin.taginwall.FriendFragment"
+              android:label="FriendFragment"
+              tools:layout="@layout/fragment_friend"/>
+</navigation>
