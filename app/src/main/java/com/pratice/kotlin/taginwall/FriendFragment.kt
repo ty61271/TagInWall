@@ -34,7 +34,9 @@ class FriendFragment : Fragment() {
 
     private lateinit var friendAdater: FriendAdater
 
-    private lateinit var adater: FirestoreRecyclerAdapter<FriendData, FriendHolder>
+    private lateinit var addAdater: FirestoreRecyclerAdapter<FriendData, FriendHolder>
+
+    private lateinit var isFriendAdater: FirestoreRecyclerAdapter<FriendData, FriendHolder>
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -45,11 +47,16 @@ class FriendFragment : Fragment() {
         setNickName()
         setAddFriend()
 
-        friendAdater=FriendAdater(mActivity,userId)
-        recycler.setHasFixedSize(true)
-        recycler.layoutManager=LinearLayoutManager(mActivity)
-        adater=friendAdater.adater
-        recycler.adapter=adater
+        friendAdater = FriendAdater(mActivity, userId)
+        freind_add_recycle.setHasFixedSize(true)
+        freind_add_recycle.layoutManager = LinearLayoutManager(mActivity)
+        addAdater = friendAdater.getAdater(false)
+        freind_add_recycle.adapter = addAdater
+
+        friend_recycler.setHasFixedSize(true)
+        friend_recycler.layoutManager=LinearLayoutManager(mActivity)
+        isFriendAdater=friendAdater.getAdater(true)
+        friend_recycler.adapter=isFriendAdater
 
     }
 
@@ -63,7 +70,8 @@ class FriendFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         friendFirebaseStore.readFirebaseRealtime(tv_userid, tv_name)
-        adater.startListening()
+        addAdater.startListening()
+        isFriendAdater.startListening()
 
     }
 
@@ -101,7 +109,7 @@ class FriendFragment : Fragment() {
             .setView(textInputLayout, 20, 20, 20, 20)
             .setPositiveButton("ok") { _: DialogInterface, _: Int ->
                 val textEdit = textInputEdit.text.toString()
-                if(!textEdit.isBlank()){
+                if (!textEdit.isBlank()) {
                     when (resBtn) {
                         R.id.tv_name -> friendFirebaseStore.setNickNameToFirebase(textEdit)
                         R.id.fab_add_friend -> friendFirebaseStore.setFriendToFirebase(textEdit)
