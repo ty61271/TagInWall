@@ -3,6 +3,7 @@ package com.pratice.kotlin.taginwall
 import android.content.Context
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.MetadataChanges
@@ -33,18 +34,22 @@ class FriendFirebaseStore(val mAcivity: Context, val userId: String?) {
 
     fun setNickNameToFirebase(textEdit: String) = db.document("$userId").update("name", textEdit)
 
-    fun setFriendData(textEdit: String) = FriendData(db.document("$textEdit"), false)
+    fun setFriendData(textEdit: String) = FriendData(db.document("$textEdit"), true)
 
     fun setMyFriendData() = FriendData(db.document("$userId"), false)
 
     fun setFriendToFirebase(textEdit: String) {
 
         db.document(textEdit).get().addOnSuccessListener {
-            if (it.exists()) {
-                val friendData = setFriendData(textEdit)
-                val myFriendData = setMyFriendData()
-                setMyFriendCollection(userId!!, textEdit, friendData)
-                setMyFriendCollection(textEdit, userId!!, myFriendData)
+            if (it.id == userId) {
+                Toast.makeText(mAcivity, "cant add self", Toast.LENGTH_LONG).show()
+            } else {
+                if (it.exists()) {
+                    val friendData = setFriendData(textEdit)
+                    val myFriendData = setMyFriendData()
+                    setMyFriendCollection(userId!!, textEdit, friendData)
+                    setMyFriendCollection(textEdit, userId!!, myFriendData)
+                }
             }
             Log.d(TAG, "加入成功")
         }

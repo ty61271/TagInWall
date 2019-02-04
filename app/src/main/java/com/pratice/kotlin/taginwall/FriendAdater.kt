@@ -34,15 +34,19 @@ class FriendAdater(val mActivity: Context, val userId: String?) {
                         val userData = documentSnapshot?.toObject(UserData::class.java)
                         friendHolder.itemView.friend_info.text = "${userData?.uid}\t:\n${userData?.name}"
                         if (state) {
+                            friendHolder.itemView.btn_add_friend.text = "wait"
                             friendHolder.itemView.btn_add_friend.text = "delete"
                             friendHolder.itemView.btn_add_friend.setOnClickListener {
                                 db.document("${userData?.uid}").delete()
+                                FirebaseFirestore.getInstance().collection("users").document("${userData?.uid}")
+                                    .collection("friends")
+                                    .document("$userId")
+                                    .delete()
                             }
                         } else {
                             friendHolder.itemView.btn_add_friend.setOnClickListener {
-
                                 db.document("${userData?.uid}").update("state", true)
-
+                                friendHolder.itemView.btn_add_friend.text="wait"
                             }
                         }
 
@@ -50,7 +54,6 @@ class FriendAdater(val mActivity: Context, val userId: String?) {
                 }
             }
         return adater
-
     }
 }
 

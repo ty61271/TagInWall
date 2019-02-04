@@ -33,6 +33,7 @@ class FriendFragment : Fragment() {
     private lateinit var friendFirebaseStore: FriendFirebaseStore
 
     private lateinit var friendAdater: FriendAdater
+    private lateinit var aadFriendAdater: FriendAdater
 
     private lateinit var addAdater: FirestoreRecyclerAdapter<FriendData, FriendHolder>
 
@@ -47,16 +48,17 @@ class FriendFragment : Fragment() {
         setNickName()
         setAddFriend()
 
-        friendAdater = FriendAdater(mActivity, userId)
+        aadFriendAdater = FriendAdater(mActivity, userId)
         freind_add_recycle.setHasFixedSize(true)
         freind_add_recycle.layoutManager = LinearLayoutManager(mActivity)
-        addAdater = friendAdater.getAdater(false)
+        addAdater = aadFriendAdater.getAdater(false)
         freind_add_recycle.adapter = addAdater
 
+        friendAdater = FriendAdater(mActivity, userId)
         friend_recycler.setHasFixedSize(true)
-        friend_recycler.layoutManager=LinearLayoutManager(mActivity)
-        isFriendAdater=friendAdater.getAdater(true)
-        friend_recycler.adapter=isFriendAdater
+        friend_recycler.layoutManager = LinearLayoutManager(mActivity)
+        isFriendAdater = friendAdater.getAdater(true)
+        friend_recycler.adapter = isFriendAdater
 
     }
 
